@@ -125,3 +125,36 @@ footer {
     font-size: 3rem;
   }
 }
+/* Product cards */
+#product-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  gap: 1.25rem;
+}
+
+.product-card {
+  background: white;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.product-emoji {
+  font-size: 3rem;
+}
+
+.product-card h3 {
+  color: var(--green);
+}
+
+.price {
+  font-weight: 700;
+}
+
+.product-card .btn {
+  margin-top: auto;
+  text-align: center;
+}
