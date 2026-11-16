@@ -183,3 +183,34 @@ footer {
   background: var(--green);
   color: white;
 }
+/* About section */
+.about-content {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.about-text p {
+  margin-bottom: 1rem;
+}
+
+.about-highlights {
+  list-style: none;
+  display: grid;
+  gap: 0.75rem;
+  align-content: start;
+}
+
+.about-highlights li {
+  background: white;
+  padding: 1rem 1.25rem;
+  border-radius: 0.75rem;
+  border-left: 4px solid var(--gold);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+@media (min-width: 700px) {
+  .about-content {
+    grid-template-columns: 1.3fr 1fr;
+    gap: 2.5rem;
+  }
+}
