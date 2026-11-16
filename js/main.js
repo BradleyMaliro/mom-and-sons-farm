@@ -116,14 +116,36 @@ const products = [
 ];
 
 const productList = document.getElementById("product-list");
+const filterBar = document.getElementById("filter-bar");
+
+const categories = ["All", ...new Set(products.map((p) => p.category))];
+let activeCategory = "All";
 
 function createOrderLink(productName) {
   const message = `Hi Mom & Sons Farm, I'd like to order: ${productName}`;
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 }
 
+function renderFilters() {
+  filterBar.innerHTML = categories
+    .map(
+      (category) => `
+      <button class="filter-btn ${category === activeCategory ? "active" : ""}"
+              data-category="${category}">
+        ${category}
+      </button>
+    `
+    )
+    .join("");
+}
+
 function renderProducts() {
-  productList.innerHTML = products
+  const visibleProducts =
+    activeCategory === "All"
+      ? products
+      : products.filter((product) => product.category === activeCategory);
+
+  productList.innerHTML = visibleProducts
     .map(
       (product) => `
       <article class="product-card">
@@ -140,4 +162,14 @@ function renderProducts() {
     .join("");
 }
 
+filterBar.addEventListener("click", (event) => {
+  const button = event.target.closest(".filter-btn");
+  if (!button) return;
+
+  activeCategory = button.dataset.category;
+  renderFilters();
+  renderProducts();
+});
+
+renderFilters();
 renderProducts();

@@ -158,3 +158,28 @@ footer {
   margin-top: auto;
   text-align: center;
 }
+/* Filter buttons */
+#filter-bar {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.filter-btn {
+  flex-shrink: 0;
+  border: 2px solid var(--green);
+  background: transparent;
+  color: var(--green);
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.filter-btn.active {
+  background: var(--green);
+  color: white;
+}
