@@ -1,6 +1,6 @@
-# Mom & Sons Farm Website
+# Mother &amp; Sons Farm Website
 
-A mobile-first website for Mom & Sons Farm in Kitale, Kenya. Customers can browse farm products, filter by category, and order instantly through WhatsApp.
+A mobile-first website for Mother &amp; Sons Farm in Kitale, Kenya. Customers can browse farm products, filter by category, and order instantly through WhatsApp.
 
 ## Why I built it
 

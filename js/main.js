@@ -145,7 +145,7 @@ const categories = ["All", ...new Set(products.map((p) => p.category))];
 let activeCategory = "All";
 
 function createOrderLink(productName) {
-  const message = `Hi Mom & Sons Farm, I'd like to order: ${productName}`;
+  const message = `Hi Mother &amp; Sons Farm, I'd like to order: ${productName}`;
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 }
 
@@ -174,7 +174,7 @@ function renderProducts() {
       <article class="product-card">
               ${
           product.image
-            ? `<img class="product-image" src="${product.image}" alt="${product.name} at Mom &amp; Sons Farm" loading="lazy" />`
+            ? `<img class="product-image" src="${product.image}" alt="${product.name} at Mother &amp; Sons Farm" loading="lazy" />`
             : `<div class="product-emoji">${product.emoji}</div>`
         }
         <h3>${product.name}</h3>
