@@ -234,3 +234,10 @@ html {
     font-size: 0.95rem;
   }
 }
+/* Product photos */
+.product-image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 0.75rem;
+}

@@ -4,6 +4,7 @@ const products = [
   {
     name: "Kienyeji Chicken",
     emoji: "🐓",
+    image: "images/kienyeji-chicken.webp",
     category: "Poultry",
     description: "Free-range farm-raised chicken, sold live or dressed.",
     price: "KSh 1,000 each",
@@ -149,7 +150,11 @@ function renderProducts() {
     .map(
       (product) => `
       <article class="product-card">
-        <div class="product-emoji">${product.emoji}</div>
+              ${
+          product.image
+            ? `<img class="product-image" src="${product.image}" alt="${product.name} at Mom &amp; Sons Farm" loading="lazy" />`
+            : `<div class="product-emoji">${product.emoji}</div>`
+        }
         <h3>${product.name}</h3>
         <p>${product.description}</p>
         <p class="price">${product.price}</p>
