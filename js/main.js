@@ -4,7 +4,7 @@ const products = [
   {
     name: "Kienyeji Chicken",
     emoji: "🐓",
-    image: "images/kienyeji-chicken.webp",
+    image: "images/kienyeji-chicken.webp.jpeg",
     category: "Poultry",
     description: "Free-range farm-raised chicken, sold live or dressed.",
     price: "KSh 1,000 each",
