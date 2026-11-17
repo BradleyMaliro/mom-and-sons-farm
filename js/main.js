@@ -1,10 +1,9 @@
 const WHATSAPP_NUMBER = "254700000000"; // replace with the real number later
-
 const products = [
   {
     name: "Kienyeji Chicken",
     emoji: "🐓",
-    image: "images/kienyeji-chicken.webp.jpeg",
+    image: "images/kienyeji-chicken.webp",
     category: "Poultry",
     description: "Free-range farm-raised chicken, sold live or dressed.",
     price: "KSh 1,000 each",
@@ -12,13 +11,23 @@ const products = [
   {
     name: "Broiler Chicken",
     emoji: "🍗",
+    image: "images/broiler-chicken.webp",
     category: "Poultry",
     description: "Fast-growing broilers, raised on the farm.",
     price: "KSh 500 per hen",
   },
   {
+    name: "Day-Old Chicks",
+    emoji: "🐥",
+    image: "images/day-old-chicks.webp",
+    category: "Poultry",
+    description: "Healthy kienyeji day-old chicks for your own farm.",
+    price: "Ask for price",
+  },
+  {
     name: "Geese",
     emoji: "🦆",
+    image: "images/geese.webp",
     category: "Poultry",
     description: "Farm-raised geese, great for the festive season.",
     price: "Ask for price",
@@ -26,6 +35,7 @@ const products = [
   {
     name: "Kienyeji Eggs",
     emoji: "🥚",
+    image: "images/kienyeji-eggs.webp",
     category: "Dairy & Eggs",
     description: "Rich-yolk kienyeji eggs from free-range hens. Sold by the tray.",
     price: "KSh 600 per tray",
@@ -33,6 +43,7 @@ const products = [
   {
     name: "Layer Eggs",
     emoji: "🥚",
+    image: "images/eggs.webp",
     category: "Dairy & Eggs",
     description: "Fresh layer eggs collected daily. Sold by the tray.",
     price: "KSh 450 per tray",
@@ -40,6 +51,7 @@ const products = [
   {
     name: "Fresh Milk",
     emoji: "🥛",
+    image: "images/milk.webp",
     category: "Dairy & Eggs",
     description: "Fresh cow milk, delivered chilled.",
     price: "KSh 70 per litre",
@@ -47,6 +59,7 @@ const products = [
   {
     name: "Pigs",
     emoji: "🐖",
+    image: "images/pigs.webp",
     category: "Livestock",
     description: "Healthy pigs for meat or breeding.",
     price: "Ask for price",
@@ -54,6 +67,7 @@ const products = [
   {
     name: "Goat",
     emoji: "🐐",
+    image: "images/goat.webp",
     category: "Livestock",
     description: "Healthy goats for meat or breeding, ready for events.",
     price: "Ask for price",
@@ -61,6 +75,7 @@ const products = [
   {
     name: "Sheep & Mutton",
     emoji: "🐑",
+    image: "images/sheep.webp",
     category: "Livestock",
     description: "Live sheep or fresh mutton, perfect for celebrations.",
     price: "Ask for price",
@@ -68,6 +83,7 @@ const products = [
   {
     name: "Rabbits",
     emoji: "🐇",
+    image: "images/rabbits.webp",
     category: "Livestock",
     description: "Live rabbits for meat or breeding.",
     price: "KSh 1,500 each",
@@ -75,6 +91,7 @@ const products = [
   {
     name: "Fresh Kales (Sukuma Wiki)",
     emoji: "🥬",
+    image: "images/kales.webp",
     category: "Farm Produce",
     description: "Freshly picked kales, straight from the farm.",
     price: "KSh 100 per kg",
@@ -82,6 +99,7 @@ const products = [
   {
     name: "Cabbage",
     emoji: "🥬",
+    image: "images/cabbage.webp",
     category: "Farm Produce",
     description: "Fresh, firm cabbages from our farm.",
     price: "KSh 40 per kg",
@@ -89,6 +107,7 @@ const products = [
   {
     name: "Bell Peppers",
     emoji: "🫑",
+    image: "images/bell-papers.webp",
     category: "Farm Produce",
     description: "Fresh bell peppers, picked when ordered.",
     price: "KSh 70 per kg",
@@ -96,6 +115,7 @@ const products = [
   {
     name: "Carrots",
     emoji: "🥕",
+    image: "images/carrots.webp",
     category: "Farm Produce",
     description: "Fresh, crunchy carrots from the farm.",
     price: "KSh 80 per kg",
@@ -103,6 +123,7 @@ const products = [
   {
     name: "Chick Mash",
     emoji: "🌾",
+    image: "images/chickmash.webp",
     category: "Farm Supplies",
     description: "Quality chick mash for your growing chicks. 50 kg bag.",
     price: "KSh 4,700 per 50 kg",
@@ -110,6 +131,7 @@ const products = [
   {
     name: "Chicken Manure",
     emoji: "🌱",
+    image: "images/chicken-manure.webp",
     category: "Farm Supplies",
     description: "Well-dried chicken manure, great for boosting your crops and kitchen garden.",
     price: "KSh 15,000 per tonne",
