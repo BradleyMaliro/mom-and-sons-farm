@@ -1,4 +1,4 @@
-const WHATSAPP_NUMBER = "254700000000"; // replace with the real number later
+const WHATSAPP_NUMBER = "254797857428";
 const products = [
   {
     name: "Kienyeji Chicken",
