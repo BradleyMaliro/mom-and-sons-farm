@@ -241,3 +241,16 @@ html {
   object-fit: cover;
   border-radius: 0.75rem;
 }
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.logo-img {
+  height: 2.75rem;
+  width: 2.75rem;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
