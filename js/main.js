@@ -1,4 +1,5 @@
 const WHATSAPP_NUMBER = "254797857428";
+
 const products = [
   {
     name: "Kienyeji Chicken",
@@ -138,17 +139,153 @@ const products = [
   },
 ];
 
+/* ---------- Page elements ---------- */
 const productList = document.getElementById("product-list");
 const filterBar = document.getElementById("filter-bar");
+const cartBtn = document.getElementById("cart-btn");
+const cartCountEl = document.getElementById("cart-count");
+const cartDrawer = document.getElementById("cart-drawer");
+const cartOverlay = document.getElementById("cart-overlay");
+const cartClose = document.getElementById("cart-close");
+const cartItemsEl = document.getElementById("cart-items");
+const cartTotalEl = document.getElementById("cart-total");
+const cartNoteEl = document.getElementById("cart-note");
+const cartCheckout = document.getElementById("cart-checkout");
 
 const categories = ["All", ...new Set(products.map((p) => p.category))];
 let activeCategory = "All";
 
-function createOrderLink(productName) {
-  const message = `Hi Mother &amp; Sons Farm, I'd like to order: ${productName}`;
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+/* ---------- Cart ---------- */
+// The cart: product name -> quantity
+const cart = {};
+
+function findProduct(name) {
+  return products.find((p) => p.name === name);
 }
 
+// Pulls the number out of a price like "KSh 1,000 each". Returns null for "Ask for price".
+function getAmount(product) {
+  const match = product.price.match(/KSh\s*([\d,]+)/);
+  return match ? Number(match[1].replace(/,/g, "")) : null;
+}
+
+function formatKsh(amount) {
+  return "KSh " + amount.toLocaleString("en-US");
+}
+
+function getCartSummary() {
+  let total = 0;
+  let hasUnpriced = false;
+
+  Object.entries(cart).forEach(([name, qty]) => {
+    const amount = getAmount(findProduct(name));
+    if (amount === null) {
+      hasUnpriced = true;
+    } else {
+      total += amount * qty;
+    }
+  });
+
+  return { total, hasUnpriced };
+}
+
+function renderCart() {
+  const entries = Object.entries(cart);
+  const count = entries.reduce((sum, [, qty]) => sum + qty, 0);
+  cartCountEl.textContent = count;
+
+  if (entries.length === 0) {
+    cartItemsEl.innerHTML = `<p class="cart-empty">Your cart is empty. Tap "Quick Add" on any product.</p>`;
+  } else {
+    cartItemsEl.innerHTML = entries
+      .map(([name, qty]) => {
+        const product = findProduct(name);
+        const thumb = product.image
+          ? `<img class="cart-thumb" src="${product.image}" alt="" />`
+          : `<div class="cart-thumb cart-thumb-emoji">${product.emoji}</div>`;
+
+        return `
+          <div class="cart-item">
+            ${thumb}
+            <div>
+              <p class="cart-item-name">${name}</p>
+              <p class="cart-item-price">${product.price}</p>
+              <button class="cart-remove" data-action="remove" data-name="${name}">Remove</button>
+            </div>
+            <div class="qty">
+              <button class="qty-btn" data-action="dec" data-name="${name}" aria-label="One less ${name}">−</button>
+              <span class="qty-num">${qty}</span>
+              <button class="qty-btn" data-action="inc" data-name="${name}" aria-label="One more ${name}">+</button>
+            </div>
+          </div>
+        `;
+      })
+      .join("");
+  }
+
+  const { total, hasUnpriced } = getCartSummary();
+  cartTotalEl.textContent = formatKsh(total);
+  cartNoteEl.textContent = hasUnpriced
+    ? "Items marked “Ask for price” are not in the total. We’ll confirm their prices on WhatsApp."
+    : "";
+  cartCheckout.disabled = entries.length === 0;
+}
+
+function openCart() {
+  cartDrawer.inert = false;
+  cartDrawer.classList.add("open");
+  cartOverlay.classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+
+function closeCart() {
+  cartDrawer.classList.remove("open");
+  cartOverlay.classList.remove("open");
+  cartDrawer.inert = true;
+  document.body.style.overflow = "";
+}
+
+cartBtn.addEventListener("click", openCart);
+cartClose.addEventListener("click", closeCart);
+cartOverlay.addEventListener("click", closeCart);
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") closeCart();
+});
+
+// + / - / Remove buttons inside the cart
+cartItemsEl.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-action]");
+  if (!button) return;
+
+  const name = button.dataset.name;
+  const action = button.dataset.action;
+
+  if (action === "inc" && cart[name] < 99) cart[name] += 1;
+  if (action === "dec") {
+    cart[name] -= 1;
+    if (cart[name] <= 0) delete cart[name];
+  }
+  if (action === "remove") delete cart[name];
+
+  renderCart();
+});
+
+// Send the whole cart to WhatsApp as one message
+cartCheckout.addEventListener("click", () => {
+  const lines = Object.entries(cart).map(
+    ([name, qty]) => `- ${qty} x ${name} (${findProduct(name).price})`
+  );
+  const { total, hasUnpriced } = getCartSummary();
+
+  let message = `Hi Mother & Sons Farm, I'd like to order:\n${lines.join("\n")}`;
+  if (total > 0) message += `\nEstimated total: ${formatKsh(total)}`;
+  if (hasUnpriced) message += `\n(Some items need a price quote.)`;
+
+  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+  window.open(url, "_blank", "noopener");
+});
+
+/* ---------- Products ---------- */
 function renderFilters() {
   filterBar.innerHTML = categories
     .map(
@@ -172,17 +309,21 @@ function renderProducts() {
     .map(
       (product) => `
       <article class="product-card">
-              ${
-          product.image
-            ? `<img class="product-image" src="${product.image}" alt="${product.name} at Mother &amp; Sons Farm" loading="lazy" />`
-            : `<div class="product-emoji">${product.emoji}</div>`
-        }
-        <h3>${product.name}</h3>
-        <p>${product.description}</p>
-        <p class="price">${product.price}</p>
-        <a class="btn" href="${createOrderLink(product.name)}" target="_blank" rel="noopener">
-          Order on WhatsApp
-        </a>
+        <div class="product-media">
+          ${
+            product.image
+              ? `<img class="product-image" src="${product.image}" alt="${product.name} at Mother &amp; Sons Farm" loading="lazy" />`
+              : `<div class="product-emoji">${product.emoji}</div>`
+          }
+          <div class="product-overlay">
+            <button class="quick-add" data-name="${product.name}">Quick Add</button>
+          </div>
+        </div>
+        <div class="product-info">
+          <h3>${product.name}</h3>
+          <p class="product-desc">${product.description}</p>
+          <p class="price">${product.price}</p>
+        </div>
       </article>
     `
     )
@@ -198,8 +339,25 @@ filterBar.addEventListener("click", (event) => {
   renderProducts();
 });
 
+productList.addEventListener("click", (event) => {
+  const button = event.target.closest(".quick-add");
+  if (!button) return;
+
+  const name = button.dataset.name;
+  cart[name] = (cart[name] || 0) + 1;
+  renderCart();
+
+  button.textContent = "Added ✓";
+  setTimeout(() => {
+    button.textContent = "Quick Add";
+  }, 1200);
+});
+
+cartDrawer.inert = true;
 renderFilters();
 renderProducts();
+renderCart();
+
 /* ---------- Hero animation ---------- */
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
