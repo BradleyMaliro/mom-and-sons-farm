@@ -15,21 +15,27 @@
   <meta property="og:image:width" content="600" />
   <meta property="og:image:height" content="600" />
   <meta name="twitter:card" content="summary" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css">
   <link rel="icon" type="image/webp" href="images/logo.webp" />
 </head>
 <body>
-  <header class="site-header">
+    <header class="site-header">
     <a href="#" class="logo">
-  <img src="images/logo.webp" alt="Mother &amp; Sons Farm logo" class="logo-img" />
-  <span>Mother &amp; Sons Farm</span>
-</a>
-    <nav>
+      <img src="images/logo.webp" alt="Mother &amp; Sons Farm logo" class="logo-img" />
+      <span>-Mother &amp; Sons</span>
+    </a>
+    <nav class="pill-nav">
       <a href="#products">Products</a>
       <a href="#about">About</a>
       <a href="#delivery">Delivery</a>
       <a href="#contact">Contact</a>
     </nav>
+    <button class="cart-btn" id="cart-btn" aria-label="Open cart">
+      Cart <span class="cart-count" id="cart-count">0</span>
+    </button>
   </header>
 
   <main>
