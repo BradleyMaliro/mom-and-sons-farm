@@ -200,3 +200,46 @@ filterBar.addEventListener("click", (event) => {
 
 renderFilters();
 renderProducts();
+/* ---------- Hero animation ---------- */
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+// Split the hero title into letters so each can animate on its own
+let letterIndex = 0;
+document.querySelectorAll(".hero-line").forEach((line) => {
+  const text = line.textContent;
+  line.textContent = "";
+
+  for (const char of text) {
+    if (char === " ") {
+      line.append(" ");
+      continue;
+    }
+    const span = document.createElement("span");
+    span.className = "letter";
+    span.textContent = char;
+    span.setAttribute("aria-hidden", "true");
+    span.style.setProperty("--i", letterIndex++);
+    line.append(span);
+  }
+});
+
+// Parallax: photos drift a little as you scroll
+if (!reduceMotion) {
+  const floaters = document.querySelectorAll(".float-wrap");
+  let ticking = false;
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        floaters.forEach((el) => {
+          el.style.transform = `translateY(${window.scrollY * Number(el.dataset.speed)}px)`;
+        });
+        ticking = false;
+      });
+    },
+    { passive: true }
+  );
+}
