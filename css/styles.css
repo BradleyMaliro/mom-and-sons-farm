@@ -922,3 +922,25 @@ footer {
     margin-top: auto;
   }
 }
+/* ===== Hero spacing tweaks ===== */
+@media (min-width: 800px) {
+  .float-3 {
+    right: 24%;
+    bottom: 7rem;
+  }
+}
+
+@media (max-width: 799px) {
+  .float-1,
+  .float-2 {
+    top: 9.5rem;
+  }
+
+  .float-3 {
+    top: 10.25rem;
+  }
+
+  .hero .hero-title {
+    margin: 12rem 0 1.5rem;
+  }
+}
