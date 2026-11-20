@@ -884,3 +884,41 @@ footer {
   cursor: not-allowed;
   transform: none;
 }
+/* ===== Phone hero fix ===== */
+@media (max-width: 799px) {
+  .float-1,
+  .float-2,
+  .float-3 {
+    width: 24vw;
+    max-width: none;
+  }
+
+  .float-1 {
+    top: 7.5rem;
+    left: 4%;
+    right: auto;
+    bottom: auto;
+  }
+
+  .float-3 {
+    top: 8.25rem;
+    left: calc(50% - 12vw);
+    right: auto;
+    bottom: auto;
+  }
+
+  .float-2 {
+    top: 7.5rem;
+    right: 4%;
+    left: auto;
+    bottom: auto;
+  }
+
+  .hero .hero-title {
+    margin: 9rem 0 1.5rem;
+  }
+
+  .hero-bottom {
+    margin-top: auto;
+  }
+}
