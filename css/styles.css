@@ -944,3 +944,10 @@ footer {
     margin: 12rem 0 1.5rem;
   }
 }
+/* Footer on phones */
+@media (max-width: 799px) {
+  footer {
+    padding: 2rem 1.25rem 3rem;
+    letter-spacing: 0.12em;
+  }
+}
