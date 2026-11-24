@@ -1009,3 +1009,42 @@ footer {
 .wa-float:hover {
   transform: translateY(-3px);
 }
+/* ===== Payment section ===== */
+.pay-card {
+  background: var(--olive);
+  border-radius: 2.5rem;
+  padding: 1.75rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 25px 50px -12px rgba(1, 71, 46, 0.2);
+}
+
+.pay-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+}
+
+.pay-till {
+  font-family: "Anton", Impact, sans-serif;
+  font-size: clamp(3rem, 14vw, 5.5rem);
+  line-height: 1.1;
+  letter-spacing: 0.08em;
+}
+
+.pay-name {
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.pay-steps {
+  margin: 0 0 1rem 1.25rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.pay-note {
+  font-size: 0.9rem;
+  opacity: 0.85;
+}

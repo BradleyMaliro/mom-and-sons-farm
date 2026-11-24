@@ -429,3 +429,19 @@ if (!reduceMotion) {
     { passive: true }
   );
 }
+/* ---------- Copy till number ---------- */
+const copyTillBtn = document.getElementById("copy-till");
+
+if (copyTillBtn) {
+  copyTillBtn.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText("987654");
+      copyTillBtn.textContent = "Copied ✓";
+    } catch {
+      copyTillBtn.textContent = "Till: 987654";
+    }
+    setTimeout(() => {
+      copyTillBtn.textContent = "Copy till number";
+    }, 1800);
+  });
+}
