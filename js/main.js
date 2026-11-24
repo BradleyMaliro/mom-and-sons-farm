@@ -157,7 +157,34 @@ let activeCategory = "All";
 
 /* ---------- Cart ---------- */
 // The cart: product name -> quantity
-const cart = {};
+const CART_KEY = "mother-and-sons-cart";
+
+// Read the saved cart, keeping only products that still exist
+function loadCart() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(CART_KEY)) || {};
+    const clean = {};
+    Object.entries(saved).forEach(([name, qty]) => {
+      const exists = products.some((p) => p.name === name);
+      if (exists && Number.isInteger(qty) && qty > 0) {
+        clean[name] = Math.min(qty, 99);
+      }
+    });
+    return clean;
+  } catch {
+    return {};
+  }
+}
+
+function saveCart() {
+  try {
+    localStorage.setItem(CART_KEY, JSON.stringify(cart));
+  } catch {
+    // Storage can be blocked (for example in private mode). The cart still works.
+  }
+}
+
+const cart = loadCart();
 
 function findProduct(name) {
   return products.find((p) => p.name === name);
@@ -190,6 +217,7 @@ function getCartSummary() {
 }
 
 function renderCart() {
+  saveCart();
   const entries = Object.entries(cart);
   const count = entries.reduce((sum, [, qty]) => sum + qty, 0);
   cartCountEl.textContent = count;
