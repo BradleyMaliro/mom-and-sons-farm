@@ -1206,3 +1206,14 @@ footer {
     grid-template-columns: 1.5fr 1fr 1fr;
   }
 }
+/* ===== Scroll reveal ===== */
+.js-reveal .reveal {
+  opacity: 0;
+  transform: translateY(100px);
+  transition: opacity 1.2s var(--ease), transform 1.2s var(--ease);
+}
+
+.js-reveal .reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}

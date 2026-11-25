@@ -445,3 +445,28 @@ if (copyTillBtn) {
     }, 1800);
   });
 }
+/* ---------- Scroll reveal ---------- */
+const revealTargets = document.querySelectorAll(
+  "section:not(.hero) h2, .about-content, .delivery-grid, .pay-card, .pay-steps, .contact-grid, .footer-inner"
+);
+
+if (!reduceMotion && "IntersectionObserver" in window) {
+  document.documentElement.classList.add("js-reveal");
+
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.12, rootMargin: "0px 0px -6% 0px" }
+  );
+
+  revealTargets.forEach((el) => {
+    el.classList.add("reveal");
+    revealObserver.observe(el);
+  });
+}
