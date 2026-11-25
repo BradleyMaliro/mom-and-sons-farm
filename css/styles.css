@@ -1093,3 +1093,49 @@ footer {
     gap: 2.5rem;
   }
 }
+/* ===== Contact section ===== */
+.contact-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.contact-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1.5rem;
+  background: var(--olive);
+  border-radius: 2.5rem;
+  box-shadow: 0 25px 50px -12px rgba(1, 71, 46, 0.2);
+  transition: transform 0.6s var(--ease);
+}
+
+a.contact-card:hover {
+  transform: translateY(-4px);
+}
+
+.contact-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+}
+
+.contact-value {
+  font-family: "Anton", Impact, sans-serif;
+  font-size: clamp(1.6rem, 6vw, 2.2rem);
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+@media (min-width: 800px) {
+  .contact-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+/* Contact grid: 2 columns for 4 cards */
+@media (min-width: 800px) {
+  .contact-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
