@@ -1139,3 +1139,70 @@ a.contact-card:hover {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+/* ===== Footer ===== */
+footer {
+  text-align: left;
+  padding: 3.5rem 1.5rem 6rem;
+  font-size: 0.95rem;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.footer-inner {
+  max-width: 72rem;
+  margin: 0 auto;
+  display: grid;
+  gap: 2rem;
+}
+
+.footer-title {
+  font-family: "Anton", Impact, sans-serif;
+  font-size: clamp(2.75rem, 12vw, 5rem);
+  line-height: 0.95;
+  text-transform: uppercase;
+  color: var(--cream);
+}
+
+.footer-tag {
+  margin-top: 0.5rem;
+}
+
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.footer-head {
+  margin-bottom: 0.4rem;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: var(--moss);
+}
+
+.footer-col a {
+  transition: color 0.6s var(--ease);
+}
+
+.footer-col a:hover {
+  color: var(--cream);
+}
+
+.footer-legal {
+  max-width: 72rem;
+  margin: 2.5rem auto 0;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(204, 213, 174, 0.25);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  opacity: 0.6;
+}
+
+@media (min-width: 800px) {
+  .footer-inner {
+    grid-template-columns: 1.5fr 1fr 1fr;
+  }
+}
